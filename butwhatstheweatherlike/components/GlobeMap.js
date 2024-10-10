@@ -14,7 +14,7 @@ const GlobeMap = () => {
       
       const map = new mapboxgl.Map({
         container: mapContainer.current,
-        style: 'mapbox://styles/mapbox/satellite-streets-v12',
+        style: 'mapbox://styles/mapbox/dark-v11',
         projection: 'globe',
         zoom: 1.5,
         center: [30, 15]
@@ -23,8 +23,49 @@ const GlobeMap = () => {
       map.addControl(new mapboxgl.NavigationControl());
       map.scrollZoom.disable();
 
-      map.on('style.load', () => {
+      map.on('load', () => {
+        console.log('Map loaded');
         map.setFog({});
+
+        fetch('/data/country-boundaries.geojson')
+          .then(response => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+          })
+          .then(data => {
+            console.log('GeoJSON data loaded', data);
+            map.addSource('country-boundaries', {
+              type: 'geojson',
+              data: data
+            });
+
+            map.addLayer({
+              'id': 'country-boundaries-fill',
+              'type': 'fill',
+              'source': 'country-boundaries',
+              'paint': {
+                'fill-color': '#FFA500',
+                'fill-opacity': 0.6,
+              }
+            });
+
+            map.addLayer({
+              'id': 'country-boundaries-outline',
+              'type': 'line',
+              'source': 'country-boundaries',
+              'paint': {
+                'line-color': '#FFA500',
+                'line-width': 1,
+              }
+            });
+
+            console.log('Layers added');
+          })
+          .catch(error => {
+            console.error('Error loading or parsing GeoJSON:', error);
+          });
       });
 
       const secondsPerRevolution = 240;
