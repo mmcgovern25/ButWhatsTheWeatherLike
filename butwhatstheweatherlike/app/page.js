@@ -74,51 +74,7 @@ export default function Home() {
   };
 
   return (
-    <div style={{ position: 'relative', width: '100vw', height: '100vh' }}>
-      {/* Your existing background content */}
-      <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
-        <Image
-          src="/images/background.svg"
-          alt="Background"
-          layout="fill"
-          objectFit="cover"
-        />
-      </div>
-
-      {/* Title */}
-      <h1 style={{
-        position: 'absolute',
-        top: '20px',
-        left: '20px',
-        zIndex: 2,
-        color: 'white',
-        fontFamily: 'Arial, sans-serif'
-      }}>
-        But What's The Weather Like?
-      </h1>
-
-      {/* Globe and button */}
-      <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}>
-        <div ref={mapContainer} style={{ width: '100%', height: '100%' }} />
-        <button
-          onClick={toggleSpin}
-          style={{
-            position: 'absolute',
-            top: '20px',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            zIndex: 2,
-            padding: '10px 20px',
-            backgroundColor: '#3386c0',
-            color: '#fff',
-            border: 'none',
-            borderRadius: '3px',
-            cursor: 'pointer'
-          }}
-        >
-          {spinEnabled ? 'Pause rotation' : 'Start rotation'}
-        </button>
-      </div>
-    </div>
+    <main>we made it to next baby</main>
+    
   );
 }
