@@ -14,9 +14,9 @@ const GlobeMap = () => {
       
       const map = new mapboxgl.Map({
         container: mapContainer.current,
-        style: 'mapbox://styles/mapbox/streets-v9',
+        style: 'mapbox://styles/mapbox/satellite-streets-v12',
         projection: 'globe',
-        zoom: 1,
+        zoom: 1.5,
         center: [30, 15]
       });
 
